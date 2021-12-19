@@ -1,0 +1,22 @@
+{
+  "name": "eac_proj",
+  "version": "1.0.0",
+  "description": "eac project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dookda/eac_proj.git"
+  },
+  "keywords": [
+    "eac"
+  ],
+  "author": "sakda homhuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dookda/eac_proj/issues"
+  },
+  "homepage": "https://github.com/dookda/eac_proj#readme"
+}
