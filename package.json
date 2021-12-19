@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/dookda/eac_proj/issues"
   },
-  "homepage": "https://github.com/dookda/eac_proj#readme"
+  "homepage": "https://github.com/dookda/eac_proj#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
+  }
 }
