@@ -4,7 +4,7 @@ $(document).ready(() => {
 });
 
 const url = "https://eec-onep.online:3700";
-// const url = 'http://localhost:3700';
+// const url = 'http://localhost:3000';
 
 
 let latlng = {

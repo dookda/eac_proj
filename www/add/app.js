@@ -1,11 +1,10 @@
 
-
 let latlng = {
     lat: 16.820378,
     lng: 100.265787
 }
 
-// const url = 'http://localhost:3700';
+// const url = 'http://localhost:3000';
 const url = "https://eec-onep.online:3700";
 let userid;
 let dataurl;
@@ -166,6 +165,21 @@ let sendData = () => {
                 typ_industwaste: $("#typ_industwaste").is(":checked") ? $("#typ_industwaste").val() : '',
                 typ_housewaste: $("#typ_housewaste").is(":checked") ? $("#typ_housewaste").val() : '',
                 typ_airpollution: $("#typ_airpollution").is(":checked") ? $("#typ_airpollution").val() : '',
+
+                typ_eastorganize: $("#typ_eastorganize").is(":checked") ? $("#typ_eastorganize").val() : '',
+                typ_impactedcommu: $("#typ_impactedcommu").is(":checked") ? $("#typ_impactedcommu").val() : '',
+                typ_orgniccommu: $("#typ_orgniccommu").is(":checked") ? $("#typ_orgniccommu").val() : '',
+                typ_famforestcommu: $("#typ_famforestcommu").is(":checked") ? $("#typ_famforestcommu").val() : '',
+                typ_eastfisher: $("#typ_eastfisher").is(":checked") ? $("#typ_eastfisher").val() : '',
+                typ_learnningnet: $("#typ_learnningnet").is(":checked") ? $("#typ_learnningnet").val() : '',
+                typ_travelcommu: $("#typ_travelcommu").is(":checked") ? $("#typ_travelcommu").val() : '',
+                typ_eastwater: $("#typ_eastwater").is(":checked") ? $("#typ_eastwater").val() : '',
+                typ_eastlabour: $("#typ_eastlabour").is(":checked") ? $("#typ_eastlabour").val() : '',
+                typ_eastwaste: $("#typ_eastwaste").is(":checked") ? $("#typ_eastwaste").val() : '',
+                typ_newgen: $("#typ_newgen").is(":checked") ? $("#typ_newgen").val() : '',
+                typ_ecobase: $("#typ_ecobase").is(":checked") ? $("#typ_ecobase").val() : '',
+                typ_eastfarmer: $("#typ_eastfarmer").is(":checked") ? $("#typ_eastfarmer").val() : '',
+
                 typ_noisepollution: $("#typ_noisepollution").is(":checked") ? $("#typ_noisepollution").val() : '',
                 typ_other: $("#typ_other").is(":checked") ? $("#typ_other").val() : '',
                 orgtypeother: $('#orgtypeother').val(),
@@ -183,8 +197,6 @@ let sendData = () => {
             r.data.data == "success" ? $("#okmodal").modal("show") : null
         })
     }
-
-
     return false;
 }
 

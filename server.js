@@ -22,5 +22,8 @@ app.listen(3000, () => {
     console.log('running on http://localhost:3000')
 });
 
+const apieec = require('./service/apieec');
+app.use(apieec);
+
 const api = require('./service/api');
 app.use(api);

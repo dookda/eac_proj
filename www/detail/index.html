@@ -269,142 +269,256 @@
                             <div class="form-group">
                                 <label for="insti"><b>ประเภทงานของกลุ่ม เครือข่าย องค์กร</b></label>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <span class="text-center"><b>กลุ่ม/เครือข่าย/องค์กร</b></span>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                value="เกษตร(เกษตรอินทรีย์ เกษตรปลอดภัย ฯ)" id="typ_organic"
-                                                name="typ_organic">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                เกษตร(เกษตรอินทรีย์ เกษตรปลอดภัย ฯ)
-                                            </label>
+                                    <div class="col-sm-6">
+                                        <div class="">
+                                            <span class="text-center"><b>กลุ่ม/องค์กร</b></span>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="เกษตร(เกษตรอินทรีย์ เกษตรปลอดภัย ฯ)" id="typ_organic"
+                                                    name="typ_organic">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    เกษตร(เกษตรอินทรีย์ เกษตรปลอดภัย ฯ)
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="ท่องเที่ยวชุมชน"
+                                                    id="typ_commutrav" name="typ_commutrav">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ท่องเที่ยวชุมชน
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="ชุมชนน่าอยู่"
+                                                    id="typ_commucomfort" name="typ_commucomfort">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ชุมชนน่าอยู่
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="การเรียนรู้บนฐานชุมชน" id="typ_commulearn"
+                                                    name="typ_commulearn">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    การเรียนรู้บนฐานชุมชน
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="กลุ่มอาชีพ เศรษฐกิจชุมชน" id="typ_commuecon"
+                                                    name="typ_commuecon">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    กลุ่มอาชีพ/เศรษฐกิจชุมชน
+                                                </label>
+                                            </div>
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ท่องเที่ยวชุมชน"
-                                                id="typ_commutrav" name="typ_commutrav">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                ท่องเที่ยวชุมชน
-                                            </label>
+                                        <div class="mt-2">
+                                            <span class="text-center "><b>ด้านทรัพยากรธรรมชาติ</b></span>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="ทรัพยากร ป่าชุมชน" id="typ_commuforest"
+                                                    name="typ_commuforest">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร ป่าชุมชน
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="ทรัพยากร ป่าครอบครัว วนเกษตร" id="typ_houseforest"
+                                                    name="typ_houseforest">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร ป่าครอบครัว วนเกษตร
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="ทรัพยากร ป่าชายเลน" id="typ_mangforest"
+                                                    name="typ_mangforest">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร ป่าชายเลน
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="ทรัพยากร การจัดการน้ำ" id="typ_watmanage"
+                                                    name="typ_watmanage">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร การจัดการน้ำ
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="ทรัพยากร ที่ดิน"
+                                                    id="typ_landmange" name="typ_landmange">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร ที่ดิน
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="ทรัพยากร ประมงและชายฝั่ง" id="typ_fishing"
+                                                    name="typ_fishing">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ทรัพยากร ประมงและชายฝั่ง
+                                                </label>
+                                            </div>
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ชุมชนน่าอยู่"
-                                                id="typ_commucomfort" name="typ_commucomfort">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                ชุมชนน่าอยู่
-                                            </label>
-                                        </div>
+                                        <div class="mt-2">
+                                            <span class="text-center "><b>ด้านสิ่งแวดล้อม</b></span>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="สิ่งแวดล้อม ด้านขยะอุตสาหกรรม" id="typ_industwaste"
+                                                    name="typ_industwaste">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    สิ่งแวดล้อม ด้านขยะอุตสาหกรรม
+                                                </label>
+                                            </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                value="การเรียนรู้บนฐานชุมชน" id="typ_commulearn" name="typ_commulearn">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                การเรียนรู้บนฐานชุมชน
-                                            </label>
-                                        </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="สิ่งแวดล้อม ด้านขยะครัวเรือน" id="typ_housewaste"
+                                                    name="typ_housewaste">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    สิ่งแวดล้อม ด้านขยะครัวเรือน
+                                                </label>
+                                            </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                value="กลุ่มอาชีพ เศรษฐกิจชุมชน" id="typ_commuecon"
-                                                name="typ_commuecon">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                กลุ่มอาชีพ/เศรษฐกิจชุมชน
-                                            </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="สิ่งแวดล้อม ทางอากาศ" id="typ_airpollution"
+                                                    name="typ_airpollution">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    สิ่งแวดล้อม ทางอากาศ
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="สิ่งแวดล้อม ทางเสียง" id="typ_noisepollution"
+                                                    name="typ_noisepollution">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    สิ่งแวดล้อม ทางเสียง
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <span class="text-center"><b>ด้านทรัพยากรธรรมชาติ</b></span>
+                                    <div class="col-sm-6">
+                                        <span class="text-center"><b>เครือข่าย</b></span>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ทรัพยากร ป่าชุมชน"
-                                                id="typ_commuforest" name="typ_commuforest">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="สภาองค์กรชุมชนในภาคตะวันออก-เครือข่ายสวัสดิการชุมชน"
+                                                id="typ_eastorganize" name="typ_eastorganize">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร ป่าชุมชน
+                                                สภาองค์กรชุมชนในภาคตะวันออก-เครือข่ายสวัสดิการชุมชน
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="กลุ่มชาวบ้านผู้ได้รับผลกระทบจากโครงการ-นโยบาย เครือข่ายที่ดิน
+                                                และพื้นที่มาบตาพุด" id="typ_impactedcommu" name="typ_impactedcommu">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                กลุ่มชาวบ้านผู้ได้รับผลกระทบจากโครงการ-นโยบาย เครือข่ายที่ดิน
+                                                และพื้นที่มาบตาพุด
                                             </label>
                                         </div>
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
-                                                value="ทรัพยากร ป่าครอบครัว วนเกษตร" id="typ_houseforest"
-                                                name="typ_houseforest">
+                                                value="เครือข่ายเกษตรอินทรีย์" id="typ_orgniccommu"
+                                                name="typ_orgniccommu">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร ป่าครอบครัว วนเกษตร
-                                            </label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ทรัพยากร ป่าชายเลน"
-                                                id="typ_mangforest" name="typ_mangforest">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร ป่าชายเลน
+                                                เครือข่ายเกษตรอินทรีย์
                                             </label>
                                         </div>
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
-                                                value="ทรัพยากร การจัดการน้ำ" id="typ_watmanage" name="typ_watmanage">
+                                                value="เครือข่ายวนเกษตรและเครือข่ายป่าชุมชน และเครอข่ายที่ดินในเขตป่า"
+                                                id="typ_famforestcommu" name="typ_famforestcommu">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร การจัดการน้ำ
+                                                เครือข่ายวนเกษตรและเครือข่ายป่าชุมชน และเครอข่ายที่ดินในเขตป่า
                                             </label>
                                         </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ทรัพยากร ที่ดิน"
-                                                id="typ_landmange" name="typ_landmange">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร ที่ดิน
-                                            </label>
-                                        </div>
-
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
-                                                value="ทรัพยากร ประมงและชายฝั่ง" id="typ_fishing" name="typ_fishing">
+                                                value="เครือข่ายประมงและชายฝั่งทะเลภาคตะวันออก +เครือข่ายประมงน้ำจืด"
+                                                id="typ_eastfisher" name="typ_eastfisher">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                ทรัพยากร ประมงและชายฝั่ง
+                                                เครือข่ายประมงและชายฝั่งทะเลภาคตะวันออก +เครือข่ายประมงน้ำจืด
                                             </label>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <span class="text-center"><b>ด้านสิ่งแวดล้อม</b></span>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
-                                                value="สิ่งแวดล้อม ด้านขยะอุตสาหกรรม" id="typ_industwaste"
-                                                name="typ_industwaste">
+                                                value="เครือข่ายการเรียนรู้บนฐานชุมชน" id="typ_learnningnet"
+                                                name="typ_learnningnet">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                สิ่งแวดล้อม ด้านขยะอุตสาหกรรม
+                                                เครือข่ายการเรียนรู้บนฐานชุมชน
                                             </label>
                                         </div>
-
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
-                                                value="สิ่งแวดล้อม ด้านขยะครัวเรือน" id="typ_housewaste"
-                                                name="typ_housewaste">
+                                                value="เครือข่ายท่องเที่ยวชุมชน" id="typ_travelcommu"
+                                                name="typ_travelcommu">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                สิ่งแวดล้อม ด้านขยะครัวเรือน
+                                                เครือข่ายท่องเที่ยวชุมชน
                                             </label>
                                         </div>
-
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="สิ่งแวดล้อม ทางอากาศ"
-                                                id="typ_airpollution" name="typ_airpollution">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="เครือข่ายน้ำภาคตะวันออก" id="typ_eastwater" name="typ_eastwater">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                สิ่งแวดล้อม ทางอากาศ
+                                                เครือข่ายน้ำภาคตะวันออก
                                             </label>
                                         </div>
-
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="สิ่งแวดล้อม ทางเสียง"
-                                                id="typ_noisepollution" name="typ_noisepollution">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="เครือข่ายแรงงานภาคตะวันออก" id="typ_eastlabour"
+                                                name="typ_eastlabour">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                สิ่งแวดล้อม ทางเสียง
+                                                เครือข่ายแรงงานภาคตะวันออก
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="เครือข่ายจับตาปัญหาขยะ มลพิษและสิ่งแวดล้อมภาคตะวันออก"
+                                                id="typ_eastwaste" name="typ_eastwaste">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                เครือข่ายจับตาปัญหาขยะ มลพิษและสิ่งแวดล้อมภาคตะวันออก
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="เครือข่ายคนรุ่นใหม่"
+                                                id="typ_newgen" name="typ_newgen">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                เครือข่ายคนรุ่นใหม่
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                value="เครือข่ายเศรษฐกิจฐานราก" id="typ_ecobase" name="typ_ecobase">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                เครือข่ายเศรษฐกิจฐานราก
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="เครือข่ายเกษตรในภาคตะวันออก เช่น กลุ่มเกษตรกรรุ่นใหม่ กลุ่มสวนทุเรียน
+                                            ลำไย นาแปลงใหญ่และอ้อย" id="typ_eastfarmer" name="typ_eastfarmer">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                เครือข่ายเกษตรในภาคตะวันออก เช่น กลุ่มเกษตรกรรุ่นใหม่ กลุ่มสวนทุเรียน
+                                                ลำไย นาแปลงใหญ่และอ้อย
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
 
 
                                 <div class="form-group">

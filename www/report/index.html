@@ -173,7 +173,7 @@
         </div>
     </footer><!-- End Footer -->
 
-    <div class="modal fade bd-example-modal-lg" id="Modalconfirm" tabindex="-1" role="dialog"
+    <div class="modal fade bd-example-modal-lg" id="deleteModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="w3-animate-top">
@@ -188,11 +188,12 @@
                 </button> -->
                     </div>
                     <div class="modal-body text-center mx-auto">
-                        <p style="font-size: 18px;">ท่านต้องการบันทึกข้อมูลนี้ใช่หรือไม่</p>
+                        <p>ท่านต้องการลบโครงการ <span id="projName"></span> ใช่หรือไม่</p>
+                        <input type="hidden" id="projId">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                        <a href="./../dashboard/index.html" class="btn btn-3bb">ยืนยัน</a>
+                        <button class="btn btn-3bb" onclick="deleteValue()">ยืนยัน</button>
                     </div>
                 </div>
             </div>

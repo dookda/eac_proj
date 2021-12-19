@@ -39,7 +39,7 @@ app.post("/org-api/insert", async (req, res) => {
     for (d in data) {
         if (data[d] !== '' && d !== 'geom') {
             let sql = `UPDATE organization SET ${d}='${data[d]}' WHERE orgid='${orgid}'`
-            console.log(sql);
+            // console.log(sql);
             await eec.query(sql)
         }
     }
