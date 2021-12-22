@@ -14,7 +14,7 @@ let map = L.map('map', {
 
 const mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     name: "base",
-    maxZoom: 18,
+    maxZoom: 20,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -34,7 +34,7 @@ const ghyb = L.tileLayer('https://{s}.google.com/vt/lyrs=y,m&x={x}&y={y}&z={z}',
 
 const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     name: "base",
-    maxZoom: 19,
+    maxZoom: 20,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     lyr: 'basemap',
     zIndex: 0
@@ -52,7 +52,7 @@ const CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_al
     name: "base",
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
-    maxZoom: 19,
+    maxZoom: 20,
     lyr: 'basemap',
     zIndex: 0
 });
@@ -423,7 +423,17 @@ const reserv_wtn = L.tileLayer.wms(eacGeoserver + "/eac/wms?", {
     name: "lyr",
     iswms: "wms",
     format: "image/png",
-    transparent: true, zIndex: 2
+    transparent: true,
+    zIndex: 2
+});
+
+const organization = L.tileLayer.wms(eacGeoserver + "/eac/wms?", {
+    layers: "eac:organization",
+    name: "lyr",
+    iswms: "wms",
+    format: "image/png",
+    transparent: true,
+    zIndex: 2
 });
 
 
@@ -449,9 +459,9 @@ var lc = L.control.locate({
 lc.start();
 
 let lyr = {
-    ghyb: ghyb.addTo(map),
-    CartoDB_Positron: CartoDB_Positron,
-    grod: grod,
+    // ghyb: ghyb.addTo(map),
+    // CartoDB_Positron: CartoDB_Positron,
+    // grod: grod,
     lu: lu,
     mainbasin: mainbasin,
     subbasin: subbasin,
@@ -494,10 +504,10 @@ let lyr = {
     diabetes: diabetes,
     diab_press: diab_press,
     reserv_wtn: reserv_wtn,
+    organization: organization,
     tam: tam,
     amp: amp,
     pro: pro.addTo(map),
-
 }
 
 let base = {
@@ -518,19 +528,16 @@ let getDetail = (e) => {
     location.href = "./../detail/index.html";
 }
 
-let hpData = axios.get("https://rti2dss.com:3600/hp_api/hp_viirs_th?fbclid=IwAR34tLi82t2GbsXPK8DmS30NJDWN93Q1skgP-eACKOucWs9pNYjHs24kHT4");
+
+let hpData = axios.get("https://firms.modaps.eosdis.nasa.gov/mapserver/wfs/SouthEast_Asia/c56f7d70bc06160e3c443a592fd9c87e/?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAME=ms:fires_snpp_24hrs&STARTINDEX=0&COUNT=5000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=-90,-180,90,180,urn:ogc:def:crs:EPSG::4326&outputformat=geojson");
 let onEachFeatureHotspot = (feature, layer) => {
     if (feature.properties) {
-        const time = feature.properties.acq_time;
-        const hr = Number(time.slice(0, 2));
-        const mn = Number(time.slice(2, 4));
         layer.bindPopup(
-            '<b>ตำแหน่งจุดความร้อน (hotspot)</b>' +
-            '<br/>lat: ' + feature.properties.latitude +
-            '<br/>lon: ' + feature.properties.longitude +
-            // '<br/>satellite: ' + feature.properties.satellite +
-            '<br/>วันที่: ' + feature.properties.acq_date +
-            '<br/>เวลา: ' + hr + ':' + mn
+            `<span class="kanit"><b>ตำแหน่งจุดความร้อน</b>
+            <br/>ข้อมูลจาก VIIRS
+            <br/>ตำแหน่งที่พบ : ${feature.properties.latitude}, ${feature.properties.longitude} 
+            <br/>ค่า Brightness temperature: ${feature.properties.brightness} Kelvin
+            <br/>วันที่: ${feature.properties.acq_datetime} UTC`
         );
     }
 }
@@ -538,7 +545,7 @@ let onEachFeatureHotspot = (feature, layer) => {
 let loadHotspot = async () => {
     let hp = await hpData;
     // console.log(hp);
-    const fs = hp.data.data.features;
+    const fs = hp.data.features;
 
     var geojsonMarkerOptions = {
         radius: 6,
@@ -1036,7 +1043,7 @@ $("#health_vol10Legend").attr("src", eacUrl + "eac:villhealth_volun10");
 $("#diabetesLegend").attr("src", eacUrl + "eac:diabetes");
 $("#diab_pressLegend").attr("src", eacUrl + "eac:diab_press");
 $("#reserv_wtnLegend").attr("src", eacUrl + "eac:reserv_wtn");
-
+$("#organizationLegend").attr("src", eacUrl + "eac:organization");
 
 $("#aqiLegend").attr("src", "./marker/location-pin-green.svg");
 $("#meteoLegend").attr("src", "./marker-meteo/location-pin-green.svg");
@@ -1112,7 +1119,8 @@ let lyrName = {
     tobe_promote: "พื้นที่ที่กำลังจะประกาศเป็นเขตส่งเสริมฯ",
     villhealth_volun5: "อสม.หมู่5",
     villhealth_volun7: "อสม.หมู่7",
-    villhealth_volun10: "อสม.หมู่10"
+    villhealth_volun10: "อสม.หมู่10",
+    organization: "เครือข่ายและกลุ่มองค์กร"
 }
 
 let fieldInfo = {
@@ -1148,8 +1156,12 @@ let fieldInfo = {
     mbasin_t: "ชื่อลุ่มน้ำหลัก",
     sb_name_t: "ชื่อลุ่มน้ำย่อย",
     house_no: "บ้านเลขที่",
-    status: "สถานะ"
-
+    status: "สถานะ",
+    orgname: "ชื่อเครือข่าย/กลุ่ม",
+    headname: "ชื่อผู้นำเครือข่าย/กลุ่ม",
+    orgpro: "ที่ตั้งจังหวัดเครือข่าย/กลุ่ม",
+    orgamp: "ที่ตั้งอำเภอชื่อเครือข่าย/กลุ่ม",
+    orgtam: "ที่ตั้งตำบลชื่อเครือข่าย/กลุ่ม",
 }
 
 map.on("click", async (e) => {
