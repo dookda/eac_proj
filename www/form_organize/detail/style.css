@@ -1,0 +1,26 @@
+.wqchart{
+    height: 250px;
+}
+
+#map {
+    height: 50vh;
+    width: 100%;
+    border-radius: 10px;
+}
+
+#map2 {
+    height: 50vh;
+    width: 100%;
+    border-radius: 10px;
+}
+
+#map3 {
+    height: 50vh;
+    width: 100%;
+    border-radius: 10px;
+}
+  
+#chart{
+    height: 55vh;
+    width: 100%;
+}
