@@ -196,7 +196,7 @@ let getMarker = (d) => {
 }
 
 let loadBytarget = async (d) => {
-    console.log(d);
+    // console.log(d);
     let runing = 0;
     let stoped = 0;
     let changed = 0;

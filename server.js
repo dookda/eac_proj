@@ -25,5 +25,5 @@ app.listen(3000, () => {
 const apieec = require('./service/apieec');
 app.use(apieec);
 
-const api = require('./service/api');
+const api = require('./service/organization');
 app.use(api);

@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express.Router();
+const md5 = require('md5');
 const con = require("./db");
 const eec = con.eec;
+const eac = con.eac;
+const eac2 = con.eac2;
 
 // const multer = require('multer')
 // const upload = multer()
@@ -11,7 +14,7 @@ app.post("/org-api/getone", (req, res) => {
     const sql = `SELECT *,ST_AsGeojson(geom) as geojson 
                 FROM organization
                 WHERE orgid='${orgid}'`
-    eec.query(sql).then(r => {
+    eac.query(sql).then(r => {
         res.status(200).json({
             data: r.rows
         })
@@ -20,10 +23,16 @@ app.post("/org-api/getone", (req, res) => {
 
 app.post("/org-api/getdata", (req, res) => {
     const { userid } = req.body;
-    const sql = `SELECT *,ST_AsGeojson(geom) as geojson 
+    const { prov } = req.body;
+    let sql
+    if (prov) {
+        sql = `SELECT *,ST_AsGeojson(geom) as geojson 
+        FROM organization where pro_name='${prov}'`;
+    } else {
+        sql = `SELECT *,ST_AsGeojson(geom) as geojson 
         FROM organization`;
-
-    eec.query(sql).then(r => {
+    }
+    eac.query(sql).then(r => {
         res.status(200).json({
             data: r.rows
         })
@@ -34,19 +43,19 @@ app.post("/org-api/insert", async (req, res) => {
     const { data } = req.body;
     let orgid = Date.now()
 
-    await eec.query(`INSERT INTO organization(orgid)VALUES('${orgid}')`)
+    await eac.query(`INSERT INTO organization(orgid)VALUES('${orgid}')`)
     let d;
     for (d in data) {
         if (data[d] !== '' && d !== 'geom') {
             let sql = `UPDATE organization SET ${d}='${data[d]}' WHERE orgid='${orgid}'`
-            // console.log(sql);
-            await eec.query(sql)
+            console.log(sql);
+            await eac.query(sql)
         }
     }
     if (data.geom !== "") {
         let sql = `UPDATE organization SET geom=ST_GeomfromGeoJSON('${JSON.stringify(data.geom.geometry)}')
                     WHERE orgid='${orgid}'`
-        await eec.query(sql)
+        await eac.query(sql)
     }
     res.status(200).json({
         data: "success"
@@ -61,13 +70,13 @@ app.post("/org-api/update", async (req, res) => {
         if (data[d] !== '' && d !== 'geom') {
             let sql = `UPDATE organization SET ${d}='${data[d]}' WHERE orgid='${orgid}'`
             console.log(sql);
-            await eec.query(sql)
+            await eac.query(sql)
         }
     }
     if (data.geom !== "" && data.geom.geometry) {
         let sql = `UPDATE organization SET geom=ST_GeomfromGeoJSON('${JSON.stringify(data.geom.geometry)}')
                     WHERE orgid='${orgid}'`
-        await eec.query(sql)
+        await eac.query(sql)
     }
     res.status(200).json({
         data: "success"
@@ -77,7 +86,7 @@ app.post("/org-api/update", async (req, res) => {
 app.post("/org-api/delete", (req, res) => {
     const { orgid } = req.body;
     const sql = `DELETE FROM organization WHERE orgid='${orgid}'`
-    eec.query(sql).then(r => {
+    eac.query(sql).then(r => {
         res.status(200).json({
             data: "success"
         })
@@ -136,7 +145,7 @@ app.get("/food_security/gets/id", async (req, res) => {
 })
 app.get("/food_security/getgeom/id", async (req, res) => {
     const { staid } = req.body
-    let sql = `SELECT *,ST_AsGeojson(geom) as geojson, ST_x(ST_Centroid(geom)) as glon, ST_y(ST_Centroid(geom))as glat,CAST(datereport AS timestamp) as date_re from food_security order by gid;`
+    let sql = `SELECT *,ST_AsGeojson(geom) as geojson, ST_x(ST_Centroid(geom)) as glon, ST_y(ST_Centroid(geom))as glat,CAST(datereport AS timestamp) as date_re from food_security order by datereport desc;`
     eec.query(sql, (e, r) => {
         // console.log(r.rows);
         res.status(200).json({
@@ -188,7 +197,7 @@ app.post("/food_security/update", async (req, res) => {
 app.get("/form_travel/getgeom", async (req, res) => {
     const { typess, prov } = req.body;
     // console.log(data)
-    let sql = `select *,ST_AsGeojson(geom) as geojson,TO_CHAR(datetimes, 'DD-MM-YYYY') as datetimes from travel_eac order by gid desc`
+    let sql = `select *,ST_AsGeojson(geom) as geojson,TO_CHAR(datetimes, 'DD-MM-YYYY') as datetimess from travel_eac order by datetimes desc`
     // console.log(y)
     eec.query(sql, (e, r) => {
         // console.log(r.rows);
@@ -300,7 +309,36 @@ app.post("/th/tambon", async (req, res) => {
             data: r.rows
         })
     })
-
 })
+
+//////////// login ///////////////
+app.post("/eac-auth/getuser", async (req, res) => {
+    const { usrname, pass } = req.body;
+    let sql = `SELECT * FROM eac_register WHERE usrname = '${usrname}' AND pass ='${pass}';`
+    eac2.query(sql, (e, r) => {
+        res.status(200).json({
+            data: r.rows
+        })
+    })
+})
+
+app.post("/eac-auth/insertuser", async (req, res) => {
+    const { data } = req.body;
+    let userid = md5(Date.now());
+
+    await eac2.query(`INSERT INTO eac_register(userid)VALUES('${userid}')`)
+    let d;
+    for (d in data) {
+        if (data[d] !== '' && d !== 'geom') {
+            let sql = `UPDATE eac_register SET ${d}='${data[d]}' WHERE userid='${userid}'`
+            // console.log(sql);
+            await eac2.query(sql)
+        }
+    }
+    res.status(200).json({
+        data: "success"
+    })
+})
+
 
 module.exports = app;
