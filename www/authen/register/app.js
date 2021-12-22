@@ -1,5 +1,5 @@
-const url = 'http://localhost:3000';
-// const url = "https://eec-onep.online:3700";
+// const url = 'http://localhost:3000';
+const url = "https://eec-onep.online:3700";
 let userid;
 let dataurl;
 let geom = "";
@@ -39,7 +39,7 @@ let checkPassword = () => {
         document.getElementById("regisBtn").disabled = true;
     } else {
         document.getElementById("passwarning").innerHTML = "";
-        document.getElementById("regisBtn").disabled = false;;
+        document.getElementById("regisBtn").disabled = false;
     }
 }
 

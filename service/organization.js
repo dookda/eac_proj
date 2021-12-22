@@ -316,16 +316,39 @@ app.post("/eac-auth/getuser", async (req, res) => {
     const { usrname, pass } = req.body;
     let sql = `SELECT * FROM eac_register WHERE usrname = '${usrname}' AND pass ='${pass}';`
     eac2.query(sql, (e, r) => {
-        res.status(200).json({
-            data: r.rows
-        })
+        if (r.rows.length > 0) {
+            res.status(200).json({
+                data: r.rows[0].userid
+            })
+        } else {
+            res.status(200).json({
+                data: "invalid"
+            })
+        }
+    })
+})
+
+app.post("/eac-auth/chkuser", async (req, res) => {
+    const { userid } = req.body;
+    let hash = md5(Date.now());
+    let sql = `SELECT * FROM eac_register WHERE userid = '${userid}'`
+    eac2.query(sql, (e, r) => {
+        if (r.rows.length > 0) {
+            eac2.query(`UPDATE eac_register SET userid='${hash}' WHERE gid='${r.rows[0].gid}'`);
+            res.status(200).json({
+                data: "valid"
+            })
+        } else {
+            res.status(200).json({
+                data: "invalid"
+            })
+        }
     })
 })
 
 app.post("/eac-auth/insertuser", async (req, res) => {
     const { data } = req.body;
     let userid = md5(Date.now());
-
     await eac2.query(`INSERT INTO eac_register(userid)VALUES('${userid}')`)
     let d;
     for (d in data) {

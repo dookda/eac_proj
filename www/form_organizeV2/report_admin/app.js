@@ -1,11 +1,7 @@
-$(document).ready(() => {
-    loadTable()
-
-});
+let ustoken = sessionStorage.getItem("ustoken")
 
 const url = "https://eec-onep.online:3700";
 // const url = 'http://localhost:3000';
-
 
 let latlng = {
     lat: 13.305567,
@@ -138,7 +134,8 @@ let loadTable = () => {
                 render: function (data, type, row, meta) {
                     // console.log(row);
                     return `<button class="btn m btn-outline-info" onclick="zoomMap(${row.lat}, ${row.lon})"><i class="bi bi-map"></i>&nbsp;zoom</button>
-                            <button class="btn btn-margin btn-outline-success" onclick="getDetail(${row.orgid})"><i class="bi bi-bar-chart-fill"></i>&nbsp;รายละเอียด</button>`
+                            <button class="btn btn-margin btn-outline-success" onclick="getDetail(${row.orgid})"><i class="bi bi-bar-chart-fill"></i>&nbsp;รายละเอียด</button>
+                            <button class="btn btn-margin btn-outline-danger" onclick="confirmDelete('${row.orgid}','${row.orgname}')"><i class="bi bi-trash"></i>&nbsp;ลบ</button>`
                 }
             }
         ],
@@ -451,15 +448,19 @@ let pieChart = (div, val) => {
         }
         return text;
     });
-
-
     chart.legend = new am4charts.Legend();
-
-
 }
 
+let gotoLogin = () => {
+    location.href = "./../../authen/login/index.html";
+}
 
-
+$(document).ready(() => {
+    axios.post(url + '/eac-auth/chkuser', { userid: ustoken }).then(r => {
+        r.data.data == "valid" ? loadTable() : gotoLogin();
+        sessionStorage.removeItem("ustoken")
+    })
+});
 
 
 

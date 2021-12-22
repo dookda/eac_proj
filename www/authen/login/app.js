@@ -1,13 +1,13 @@
-// const url = 'http://localhost:3000';
-const url = "https://eec-onep.online:3700";
+const url = 'http://localhost:3000';
+// const url = "https://eec-onep.online:3700";
 let userid;
 let dataurl;
 let geom = "";
 // let gps1;
 
 
-let gotoList = () => {
-    location.href = "./../report/index.html";
+let gotoReportAdmin = () => {
+    location.href = "./../../form_organizeV2/report_admin/index.html";
 }
 
 let refreshPage = () => {
@@ -15,13 +15,25 @@ let refreshPage = () => {
 }
 
 let checkUser = () => {
-    axios.post(url + "/getuserver",)
+
 }
 
 let login = () => {
-    let usrname = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
-    console.log(username, password);
+    let data = {
+        usrname: document.getElementById("username").value,
+        pass: document.getElementById("password").value
+    }
+
+    axios.post(url + "/eac-auth/getuser", data).then(r => {
+        console.log(r);
+        if (r.data.data == 'invalid') {
+            document.getElementById("passwarning").innerHTML = `ชื่อหรือรหัสผ่านผิด`;
+        } else {
+            document.getElementById("passwarning").innerHTML = "";
+            sessionStorage.setItem("ustoken", r.data.data)
+            gotoReportAdmin()
+        }
+    })
 }
 
 
