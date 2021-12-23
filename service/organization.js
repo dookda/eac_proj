@@ -383,4 +383,13 @@ app.post("/eac-auth/insertuser", async (req, res) => {
     })
 })
 
+app.post("/eac-auth/deleteuser", async (req, res) => {
+    const { userid } = req.body;
+    await eac2.query(`DELETE FROM eac_register WHERE userid='${userid}'`)
+
+    res.status(200).json({
+        data: "success"
+    })
+})
+
 module.exports = app;
