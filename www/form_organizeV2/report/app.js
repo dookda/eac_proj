@@ -1,7 +1,3 @@
-$(document).ready(() => {
-    loadTable()
-
-});
 
 const url = "https://eec-onep.online:3700";
 // const url = 'http://localhost:3000';
@@ -451,16 +447,12 @@ let pieChart = (div, val) => {
         }
         return text;
     });
-
-
     chart.legend = new am4charts.Legend();
-
-
 }
 
-
-
-
+$(document).ready(() => {
+    loadTable()
+});
 
 
 

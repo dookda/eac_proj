@@ -1,7 +1,7 @@
 let ustoken = sessionStorage.getItem("ustoken")
 
-const url = "https://eec-onep.online:3700";
-// const url = 'http://localhost:3000';
+// const url = "https://eec-onep.online:3700";
+const url = 'http://localhost:3000';
 
 let latlng = {
     lat: 13.305567,
@@ -452,13 +452,13 @@ let pieChart = (div, val) => {
 }
 
 let gotoLogin = () => {
-    location.href = "./../../authen/login/index.html";
+    location.href = "./../../form_authen/login/index.html";
 }
 
 $(document).ready(() => {
     axios.post(url + '/eac-auth/chkuser', { userid: ustoken }).then(r => {
         r.data.data == "valid" ? loadTable() : gotoLogin();
-        sessionStorage.removeItem("ustoken")
+        // sessionStorage.removeItem("ustoken")
     })
 });
 

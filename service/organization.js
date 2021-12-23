@@ -312,13 +312,43 @@ app.post("/th/tambon", async (req, res) => {
 })
 
 //////////// login ///////////////
+let checkUser = async (userid) => {
+    let res = await eac2.query(`SELECT * FROM eac_register WHERE userid = '${userid}'`);
+    if (res.rows.length > 0) {
+        return "valid"
+    } else {
+        return "invalid"
+    }
+}
+
+app.post("/eac-auth/getalluser", async (req, res) => {
+    const { userid } = req.body;
+    let chk = checkUser(userid)
+    chk.then(x => {
+        if (x == "valid") {
+            let sql = `SELECT usrname, userid FROM eac_register;`
+            eac2.query(sql, (e, r) => {
+                res.status(200).json({
+                    data: r.rows
+                })
+            })
+        } else {
+            res.status(200).json({
+                data: "invalid"
+            })
+        }
+    })
+})
+
 app.post("/eac-auth/getuser", async (req, res) => {
     const { usrname, pass } = req.body;
-    let sql = `SELECT * FROM eac_register WHERE usrname = '${usrname}' AND pass ='${pass}';`
+    let hash = md5(Date.now() + usrname + pass);
+    let sql = `SELECT gid, userid FROM eac_register WHERE usrname = '${usrname}' AND pass ='${pass}';`
     eac2.query(sql, (e, r) => {
         if (r.rows.length > 0) {
+            eac2.query(`UPDATE eac_register SET userid='${hash}' WHERE gid='${r.rows[0].gid}'`);
             res.status(200).json({
-                data: r.rows[0].userid
+                data: hash
             })
         } else {
             res.status(200).json({
@@ -330,20 +360,10 @@ app.post("/eac-auth/getuser", async (req, res) => {
 
 app.post("/eac-auth/chkuser", async (req, res) => {
     const { userid } = req.body;
-    let hash = md5(Date.now());
-    let sql = `SELECT * FROM eac_register WHERE userid = '${userid}'`
-    eac2.query(sql, (e, r) => {
-        if (r.rows.length > 0) {
-            eac2.query(`UPDATE eac_register SET userid='${hash}' WHERE gid='${r.rows[0].gid}'`);
-            res.status(200).json({
-                data: "valid"
-            })
-        } else {
-            res.status(200).json({
-                data: "invalid"
-            })
-        }
-    })
+    let chk = checkUser(userid)
+    chk.then(r => res.status(200).json({
+        data: r
+    }))
 })
 
 app.post("/eac-auth/insertuser", async (req, res) => {
@@ -362,6 +382,5 @@ app.post("/eac-auth/insertuser", async (req, res) => {
         data: "success"
     })
 })
-
 
 module.exports = app;
